@@ -1,0 +1,213 @@
+@import url("themes/light.css");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font: 1rem/1.65 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+main, .theme-controls {
+  max-inline-size: 74ch;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+main {
+  padding-block: clamp(1.25rem, 5vw, 4rem);
+}
+
+.theme-controls {
+  text-align: end;
+}
+
+#theme-toggle {
+  position: relative;
+  margin-block-start: 1rem;
+  min-block-size: 2.75rem;
+  padding: 0.25rem 3.5rem 0.25rem 0.25rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+#theme-toggle::before,
+#theme-toggle::after {
+  position: absolute;
+  inset-block-start: 50%;
+  translate: 0 -50%;
+  border-radius: 999px;
+  content: "";
+}
+
+#theme-toggle::before {
+  inset-inline-end: 0.25rem;
+  inline-size: 2.75rem;
+  block-size: 1.6rem;
+  background: var(--border);
+}
+
+#theme-toggle::after {
+  inset-inline-end: 1.55rem;
+  inline-size: 1.2rem;
+  block-size: 1.2rem;
+  background: white;
+  box-shadow: 0 1px 4px #0004;
+}
+
+#theme-toggle[aria-checked="true"]::before {
+  background: #3478f6;
+}
+
+#theme-toggle[aria-checked="true"]::after {
+  inset-inline-end: 0.45rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #theme-toggle::after {
+    transition: inset-inline-end 160ms ease;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-block: 1.6em 0.5em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  letter-spacing: -0.035em;
+}
+
+main > :first-child {
+  margin-block-start: 0;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+a:focus-visible, #theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+ul, ol {
+  padding-inline-start: 1.5em;
+}
+
+blockquote {
+  margin-inline: 0;
+  padding: 0.75rem 1rem;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--surface);
+}
+
+code {
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--surface);
+  font: 0.9em/1.55 ui-monospace, Consolas, monospace;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  overflow-wrap: normal;
+}
+
+pre code {
+  padding: 0;
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.75rem;
+  margin-block: 1rem;
+}
+
+.gallery img {
+  display: block;
+  inline-size: 100%;
+}
+
+.gallery a {
+  display: block;
+  cursor: zoom-in;
+}
+
+#image-viewer {
+  inline-size: min(94vw, 80rem);
+  max-block-size: 94dvh;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--text);
+}
+
+#image-viewer::backdrop {
+  background: rgb(0 0 0 / 80%);
+}
+
+#image-viewer img {
+  display: block;
+  max-block-size: 78dvh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.viewer-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-block-end: 0.75rem;
+}
+
+.viewer-controls button {
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--page);
+  color: inherit;
+  font: inherit;
+}
+
+@media (max-width: 42rem) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 26rem) {
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+hr {
+  margin-block: 2rem;
+  border: 0;
+  border-block-start: 1px solid var(--border);
+}

@@ -178,10 +178,10 @@
           (recur (rest ls) out)
 
           (fence? line)
-          (let [[code rest] (split-with #(not (fence? %)) (rest ls))]
-            (when-not (seq rest)
+          (let [[code remaining] (split-with #(not (fence? %)) (rest ls))]
+            (when-not (seq remaining)
               (throw (ex-info (str "Unterminated code fence in " file) {})))
-            (recur (rest rest)
+            (recur (rest remaining)
                    (conj out (list 'code (str/join "\n" code)))))
 
           (header line)
@@ -204,7 +204,7 @@
                          (apply list 'blockquote
                                 (inline src file
                                         (str/join " "
-                                                  (map second xs)))))))
+                                                  (map #(second (bq %)) xs)))))))
 
           (ul line)
           (let [[xs rest] (split-with ul ls)]

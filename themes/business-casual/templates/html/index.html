@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{TITLE}}</title>
+    <link rel="stylesheet" href="{{ROOT}}css/style.css">
+    <link id="dark-palette" rel="stylesheet" href="{{ROOT}}css/themes/dark.css" media="(prefers-color-scheme: dark)">
+    <script src="{{ROOT}}js/theme.js" defer></script>
+    <script src="{{ROOT}}js/gallery.js" defer></script>
+  </head>
+  <body>
+    <div class="theme-controls">
+      <button id="theme-toggle" type="button" role="switch" aria-checked="false" hidden>Dark mode</button>
+    </div>
+    <main>
+      {{CONTENT}}
+    </main>
+    <dialog id="image-viewer" aria-label="Gallery image viewer">
+      <div class="viewer-controls">
+        <button type="button" data-viewer="previous" aria-label="Previous image">←</button>
+        <span data-viewer="count" aria-live="polite"></span>
+        <button type="button" data-viewer="next" aria-label="Next image">→</button>
+        <form method="dialog">
+          <button type="submit" aria-label="Close image viewer" autofocus>×</button>
+        </form>
+      </div>
+      <img alt="">
+    </dialog>
+  </body>
+</html>
