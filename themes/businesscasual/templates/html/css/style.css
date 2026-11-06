@@ -41,6 +41,7 @@ main {
 
 #theme-toggle::before,
 #theme-toggle::after {
+  box-sizing: border-box;
   position: absolute;
   inset-block-start: 50%;
   translate: 0 -50%;
@@ -52,28 +53,36 @@ main {
   inset-inline-end: 0.25rem;
   inline-size: 2.75rem;
   block-size: 1.6rem;
-  background: var(--border);
+  border: 1px solid rgb(0 0 0 / 24%);
+  background: linear-gradient(#0003, transparent), var(--border);
+  box-shadow: inset 0 2px 4px #0005, 0 1px 0 #fff3;
 }
 
 #theme-toggle::after {
   inset-inline-end: 1.55rem;
   inline-size: 1.2rem;
   block-size: 1.2rem;
-  background: white;
-  box-shadow: 0 1px 4px #0004;
+  border: 1px solid #0003;
+  background: linear-gradient(#fff, #f5f6f8 55%, #d2d7de);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 3px #0007;
 }
 
 #theme-toggle[aria-checked="true"]::before {
-  background: #3478f6;
+  background: linear-gradient(#2056bc, #4a8cff);
 }
 
 #theme-toggle[aria-checked="true"]::after {
   inset-inline-end: 0.45rem;
 }
 
+#theme-toggle:active::after {
+  box-shadow: inset 0 1px 0 #fff, 0 1px 1px #0006;
+  scale: 0.94;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   #theme-toggle::after {
-    transition: inset-inline-end 160ms ease;
+    transition: inset-inline-end 160ms ease, scale 100ms ease;
   }
 }
 

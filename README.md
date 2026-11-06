@@ -1,6 +1,6 @@
 # Caffeine
 
-A simple Clojure static website generator that converts Markdown into HTML using themes.
+A simple Clojure static website generator that converts Markdown into HTML or Gemtext using themes.
 
 ## User Guide
 
@@ -29,6 +29,14 @@ Choose a theme and output directory with:
 For example:
 
     clojure -M gen.clj content businesscasual out
+
+### Generate Gemtext
+
+    clojure -M gen.clj --src content --theme gemtext --out gemtext
+
+The Gemtext theme lives in `themes/gemtext/`. Edit its
+`templates/index.gmi` mold to add shared Gemtext around `{{CONTENT}}`.
+The generator writes `.gmi` pages and copies assets into the output tree.
 
 ### Content
 

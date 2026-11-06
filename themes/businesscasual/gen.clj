@@ -14,6 +14,15 @@
   (str/escape (str s) {\& "&amp;" \< "&lt;" \> "&gt;"
                         \" "&quot;" \' "&#39;"}))
 
+(defn page-list [children]
+  (let [links (remove #(and (string? %) (str/blank? %)) children)]
+    (when (and (next links)
+               (every? #(and (seq? %)
+                             (= 'link (first %))
+                             (re-find #"(?i)\.html(?:[?#]|$)" (second %)))
+                       links))
+      (cons 'unordered-list (map #(list 'list-item %) links)))))
+
 (defn render [form]
   (cond
     (string? form) (escape-html form)
@@ -22,6 +31,9 @@
     (let [[kind & children] form
           [value label] children]
       (case kind
+        paragraph (if-let [pages (page-list value)]
+                    (render pages)
+                    (str "<p>" (render value) "</p>"))
         horizontal-rule "<hr>"
         code (str "<pre><code>" (escape-html value) "</code></pre>")
         image (str "<img src=\"" (escape-html value)
